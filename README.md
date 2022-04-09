@@ -1,1 +1,1 @@
-Projeto WEB - Crud feito em java utilizando JSP
+Projeto WEB - Crud feito em java utilizando a arquitetura MVC
