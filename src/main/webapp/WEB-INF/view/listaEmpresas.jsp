@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/mostraEmpresa" var="pathServletMostraEmpresa"/>
-<c:url value="/removeEmpresa" var="pathServletRemoveEmpresa"/>
+<c:url value="/entrada?acao=MostraEmpresa" var="pathServletMostraEmpresa"/>
+<c:url value="/entrada?acao=RemoveEmpresa" var="pathServletRemoveEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +20,8 @@
 		<ul>
 		<c:forEach items="${empresas}" var="empresa">
 			<li> ${ empresa.nome } - ${empresa.dataAbertura}
-			<a href= "${pathServletMostraEmpresa}?id=${empresa.id}">Editar</a>
-			<a href= "${pathServletRemoveEmpresa}?id=${empresa.id}">Remover</a>			
+			<a href= "${pathServletMostraEmpresa}&id=${empresa.id}">Editar</a>
+			<a href= "${pathServletRemoveEmpresa}&id=${empresa.id}">Remover</a>			
 			 </li>
 		</c:forEach>
 		

@@ -1,24 +1,18 @@
-package br.com.gerenciador.servlet;
+package br.com.gerenciador.acoes;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.gerenciador.domain.Banco;
 import br.com.gerenciador.domain.Empresa;
 
-@WebServlet("/novaEmpresa")
-public class NovaEmpresaServlet extends HttpServlet {
+public class NovaEmpresa implements Acao{
 
-	private static final long serialVersionUID = 4525847512361505733L;
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
 		System.out.println("Cadastrando nova empresa");
 
@@ -31,8 +25,13 @@ public class NovaEmpresaServlet extends HttpServlet {
 		Banco banco = Banco.of();
 
 		banco.adiciona(empresa);
+		
+		return "redirect:entrada?acao=ListaEmpresas";
 
-		response.sendRedirect("listaEmpresas");
+	}
+
+	public static NovaEmpresa of() {
+		return new NovaEmpresa();
 	}
 
 }
