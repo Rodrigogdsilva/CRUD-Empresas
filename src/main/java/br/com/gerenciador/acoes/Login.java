@@ -1,30 +1,37 @@
 package br.com.gerenciador.acoes;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.gerenciador.domain.Banco;
+import br.com.gerenciador.domain.Usuario;
 
-public class EditaEmpresa implements Acao {
+public class Login implements Acao {
 
+	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
+		String login = request.getParameter("login");
+		String senha = request.getParameter("senha");
+
 		Banco banco = Banco.of();
 
-		banco.editaEmpresa(request.getParameter("nome"), LocalDate.parse(request.getParameter("dataAbertura")),
-				Integer.parseInt(request.getParameter("id")));
+		Usuario user = banco.verificaUsuario(login, senha);
 
-		return "redirect:ListaEmpresas";
+		if (user != null) {
+			return "redirect:ListaEmpresas";
+		} else {
+			return "redirect:FormLogin";
+		}
 
 	}
 
-	public static EditaEmpresa of() {
-		return new EditaEmpresa();
+	public static Login of() {
+		return new Login();
 	}
 
 }

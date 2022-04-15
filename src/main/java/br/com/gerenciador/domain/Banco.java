@@ -8,7 +8,17 @@ import java.util.List;
 public class Banco {
 
 	private static List<Empresa> listaEmpresas = new ArrayList<>();
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
 	private static Integer chaveSequencial = 1;
+
+	static {
+		Usuario userAdmin = Usuario.of();
+
+		userAdmin.setLogin("admin");
+		userAdmin.setSenha("123456");
+
+		listaUsuarios.add(userAdmin);
+	}
 
 	public void adiciona(Empresa empresa) {
 		empresa.setId(chaveSequencial++);
@@ -53,5 +63,16 @@ public class Banco {
 		empresa.setNome(nome);
 		empresa.setDataAbertura(dataAbertura);
 
+	}
+
+	public Usuario verificaUsuario(String login, String senha) {
+
+		for (Usuario user : listaUsuarios) {
+			if (user.autenticaUsuario(login, senha)) {
+				return user;
+			}
+		}
+
+		return null;
 	}
 }

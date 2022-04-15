@@ -34,7 +34,7 @@ public class ControllerServlet extends HttpServlet {
 		if (tipo[0].equals("forward")) {
 			request.getRequestDispatcher("WEB-INF/view/" + tipo[1]).forward(request, response);
 		} else {
-			response.sendRedirect(tipo[1]);
+			response.sendRedirect("entrada?acao=" + tipo[1]);
 		}
 	}
 

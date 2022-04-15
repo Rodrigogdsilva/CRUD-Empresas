@@ -16,7 +16,7 @@ public class RemoveEmpresa implements Acao{
 
 		banco.removeEmpresa(Integer.valueOf(request.getParameter("id")));
 		
-		return "redirect:entrada?acao=ListaEmpresas";
+		return "redirect:ListaEmpresas";
 
 	}
 
