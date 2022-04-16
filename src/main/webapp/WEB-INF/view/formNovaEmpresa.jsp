@@ -1,21 +1,21 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/entrada" var="pathServletEntrada"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:url value="/entrada" var="pathServletEntrada" />
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-	<body>
+<body>
 
-		<form action = "${pathServletEntrada}" method = "post">
-		
-			Nome: <input type = "text" name = "nome"/>
-			Data Abertura: <input type = "date" name = "dataAbertura"/>
-			<input type = "hidden" name="acao" value="NovaEmpresa"/>
-			
-			<input type = "submit" />
-		
-		</form>
+	<c:import url="logout.jsp" />
 
-	</body>
+	<form action="${pathServletEntrada}" method="post">
+
+		Nome: <input type="text" name="nome" /> Data Abertura: <input
+			type="date" name="dataAbertura" /> <input type="hidden" name="acao"
+			value="NovaEmpresa" /> <input type="submit" />
+
+	</form>
+
+</body>
 </html>

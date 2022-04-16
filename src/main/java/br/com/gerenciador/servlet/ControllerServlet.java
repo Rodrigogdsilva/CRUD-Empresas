@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.gerenciador.acoes.Acao;
 
@@ -19,6 +20,16 @@ public class ControllerServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String parametroAcao = request.getParameter("acao");
+		
+		HttpSession session = request.getSession();
+		
+		boolean usuarioNaoAutenticado = (session.getAttribute("usuarioLogado") == null);
+		boolean acaoProtegida = !(parametroAcao.equals("Login") || parametroAcao.equals("FormLogin"));
+		
+		if(usuarioNaoAutenticado && acaoProtegida) {
+			response.sendRedirect("entrada?acao=FormLogin");
+			return;
+		}
 
 		String form;
 		try {
